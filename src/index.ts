@@ -1,21 +1,16 @@
-import express, { Request, Response } from 'express'; 
-import cors from 'cors'
-import bodyParser from 'body-parser';
-const app = express();
-app.use(cors())
-app.use(
-  bodyParser.json({
-    verify: (req:Request, res:Response, buf) => {
-      req.body = buf;
-    },
-  })
-);
-const port = 8000; 
-app.get('/',(req,res)=>{
-  res.send('req hit')
-})
+import express, { Request, Response } from 'express'
 
- 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+  const app = express()
+  const port = process.env.PORT || 8080
+
+  app.get('/', (_req: Request, res: Response) => {
+    return res.send('Express Typescript on Vercel')
+  })
+
+  app.get('/ping', (_req: Request, res: Response) => {
+    return res.send('pong 🏓')
+  })
+
+  app.listen(port, () => {
+    return console.log(`Server is listening on ${port}`)
+  })
